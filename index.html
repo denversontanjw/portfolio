@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denverson Tan — Digital Product Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf8f4;
+  --bg2:#f2ede4;
+  --bg3:#ede7da;
+  --surface:#fff;
+  --border:#e2d9cc;
+  --border2:#ccc3b4;
+  --ink:#1a1208;
+  --ink2:#5c4f3a;
+  --ink3:#9c8e78;
+  --accent:#e05c1a;
+  --accent2:#c44d10;
+  --blue:#2563eb;
+  --blue2:#1d4ed8;
+  --teal:#0f766e;
+  --gold:#b8860b;
+  --mono:'Space Mono',monospace;
+  --sans:'Space Grotesk',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* GRAIN TEXTURE */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.6}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(250,248,244,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--mono);font-size:0.9rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink2);text-decoration:none;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:7rem 3rem;max-width:1100px;margin:0 auto}
+.full-width-section{position:relative;z-index:1;padding:7rem 0}
+.full-width-inner{max-width:1100px;margin:0 auto;padding:0 3rem}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;max-width:1100px;margin:0 auto;padding:0 3rem;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:0.6rem;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(224,92,26,0.3);padding:0.35rem 0.85rem;border-radius:2px;margin-bottom:2rem;background:rgba(224,92,26,0.06)}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.hero h1{font-size:clamp(3rem,6vw,5.5rem);font-weight:600;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem}
+.hero h1 .name-line{color:var(--ink)}
+.hero h1 .title-line{color:var(--blue);font-weight:300}
+.hero-desc{font-size:1.1rem;color:var(--ink2);max-width:560px;font-weight:300;margin-bottom:3rem;line-height:1.8;border-left:3px solid var(--accent);padding-left:1.25rem}
+.hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.75rem;background:var(--accent);color:#fff;font-family:var(--mono);font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:background .2s,transform .15s}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.75rem;border:1.5px solid var(--border2);color:var(--ink2);font-family:var(--mono);font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .2s}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.hero-stats{display:flex;gap:3rem;margin-top:5rem;padding-top:3rem;border-top:1px solid var(--border)}
+.hero-stat-num{font-family:var(--mono);font-size:1.8rem;color:var(--accent);font-weight:700;margin-bottom:0.25rem}
+.hero-stat-lbl{font-size:0.75rem;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase}
+
+/* SECTION LABEL */
+.s-label{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.s-label::before{content:'//';opacity:0.4;color:var(--ink3)}
+.s-title{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;letter-spacing:-0.02em;color:var(--ink);margin-bottom:3.5rem;line-height:1.1}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:5rem;align-items:start}
+.about-left{position:sticky;top:8rem}
+.about-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
+.about-stat{background:var(--surface);border:1px solid var(--border);padding:1.25rem;border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.about-stat-num{font-family:var(--mono);font-size:1.6rem;color:var(--accent);font-weight:700}
+.about-stat-lbl{font-size:0.72rem;color:var(--ink3);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.2rem}
+.about-right p{font-size:1rem;font-weight:300;line-height:1.9;color:var(--ink2);margin-bottom:1.25rem}
+.about-right p strong{color:var(--ink);font-weight:500}
+.tag-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:2rem}
+.tag{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(15,118,110,0.3);padding:0.28rem 0.7rem;border-radius:2px;background:rgba(15,118,110,0.05)}
+
+/* EXPERIENCE */
+.exp-bg{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.exp-item{display:grid;grid-template-columns:220px 1fr;gap:4rem;padding:3.5rem 0;border-bottom:1px solid var(--border)}
+.exp-item:last-child{border-bottom:none}
+.exp-meta{}
+.exp-org{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem}
+.exp-role{font-size:1.1rem;font-weight:600;color:var(--ink);margin-bottom:0.35rem;letter-spacing:-0.01em}
+.exp-period{font-family:var(--mono);font-size:0.72rem;color:var(--ink3);margin-bottom:1rem}
+.exp-badge{display:inline-block;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue);border:1px solid rgba(37,99,235,0.25);padding:0.2rem 0.6rem;border-radius:2px;background:rgba(37,99,235,0.05)}
+.exp-content{}
+.exp-liner{font-size:1rem;font-weight:400;color:var(--ink);margin-bottom:1.5rem;line-height:1.7;border-left:2px solid var(--border2);padding-left:1rem}
+.exp-pts{list-style:none;display:flex;flex-direction:column;gap:0.7rem}
+.exp-pts li{display:flex;align-items:baseline;gap:0.8rem;font-size:0.875rem;color:var(--ink2);line-height:1.6}
+.exp-pts li::before{content:'→';font-family:var(--mono);color:var(--accent);font-size:0.75rem;flex-shrink:0}
+.exp-pts li strong{color:var(--ink);font-weight:500}
+.exp-chips{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.5rem}
+.chip{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);background:var(--bg3);border:1px solid var(--border);padding:0.22rem 0.55rem;border-radius:2px}
+
+/* PROJECTS */
+.projects-layout{display:flex;flex-direction:column;gap:5rem}
+.project-block{border:1px solid var(--border);border-radius:3px;overflow:hidden;background:var(--surface);box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+.project-header{display:grid;grid-template-columns:1fr auto;align-items:start;gap:2rem;padding:2.5rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+.project-org{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem}
+.project-name{font-size:1.4rem;font-weight:600;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.75rem}
+.project-desc{font-size:0.9rem;color:var(--ink2);line-height:1.7;max-width:600px}
+.project-impact-badge{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(15,118,110,0.3);padding:0.3rem 0.8rem;border-radius:2px;white-space:nowrap;background:rgba(15,118,110,0.08)}
+.project-body{padding:2.5rem}
+.project-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem}
+.project-col-label{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.5rem}
+.project-col-text{font-size:0.875rem;color:var(--ink2);line-height:1.7}
+
+/* FIGMA MOCKUP AREA */
+.figma-showcase{background:var(--bg3);border:1px solid var(--border);border-radius:2px;overflow:hidden;margin-top:2rem}
+.figma-bar{display:flex;align-items:center;gap:0.6rem;padding:0.75rem 1rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+.figma-dot{width:10px;height:10px;border-radius:50%}
+.figma-url{font-family:var(--mono);font-size:0.72rem;color:var(--ink3);margin-left:0.5rem}
+.figma-screens{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.screen-panel{padding:1.5rem;border-right:1px solid var(--border);background:var(--bg3)}
+.screen-panel:last-child{border-right:none}
+.screen-label{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:1rem}
+
+/* SVG DIAGRAM WRAPPER */
+.diagram-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:2px;padding:2rem;margin-top:1.5rem}
+.diagram-title{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+.diagram-title::before{content:'◈';color:var(--accent)}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--border)}
+.skill-group{background:var(--bg);padding:2rem}
+.skill-group-lbl{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+.skill-group-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.skill-list li{font-size:0.875rem;color:var(--ink2);display:flex;align-items:center;gap:0.6rem}
+.skill-list li::before{content:'▸';color:var(--teal);font-size:0.7rem;flex-shrink:0}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-left h2{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;letter-spacing:-0.02em;line-height:1.2;margin-bottom:1rem;color:var(--ink)}
+.contact-left p{font-size:0.95rem;color:var(--ink2);font-weight:300;line-height:1.8}
+.contact-links{display:flex;flex-direction:column;gap:0.75rem}
+.contact-link{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.25rem;border:1px solid var(--border);background:var(--surface);text-decoration:none;color:var(--ink);transition:border-color .2s,background .2s,box-shadow .2s;border-radius:2px}
+.contact-link:hover{border-color:var(--accent);background:var(--bg);box-shadow:0 2px 8px rgba(224,92,26,0.08)}
+.contact-link-lbl{font-family:var(--mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.15rem}
+.contact-link-val{font-size:0.9rem;color:var(--ink)}
+.contact-arrow{color:var(--accent);font-size:1rem}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.footer p{font-family:var(--mono);font-size:0.7rem;color:var(--ink3);letter-spacing:0.06em}
+
+/* FADE IN */
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{gap:1.25rem}
+  section,.full-width-inner{padding:5rem 1.5rem}
+  .hero{padding:0 1.5rem}
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem}
+  .about-left{position:static}
+  .exp-item{grid-template-columns:1fr;gap:1.5rem}
+  .project-header{grid-template-columns:1fr}
+  .project-row{grid-template-columns:1fr}
+  .figma-screens{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .hero-stats{flex-wrap:wrap;gap:1.5rem}
+  .footer{flex-direction:column;gap:0.5rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">DT_</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div id="hero" class="hero">
+  <div class="hero-badge"><span class="hero-badge-dot"></span>Available · Digital PM · Singapore</div>
+  <h1>
+    <div class="name-line">Tan Jing Wei</div>
+    <div class="name-line">Denverson</div>
+    <div class="title-line">Digital Product Manager</div>
+  </h1>
+  <p class="hero-desc">Building 0→1 digital platforms at scale — business registries, enterprise case systems, and data infrastructure that thousands rely on daily. Powered by AI-driven discovery.</p>
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">View Projects →</a>
+    <a href="#contact" class="btn-ghost">Get in Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">5+</div>
+      <div class="hero-stat-lbl">Years Leading</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-lbl">Organisations</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">10+</div>
+      <div class="hero-stat-lbl">Integrated Systems</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">50%</div>
+      <div class="hero-stat-lbl">Cycle Time Reduction</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left fade-in">
+      <div class="s-label">About</div>
+      <div class="s-title" style="margin-bottom:1.5rem">Built for complexity.</div>
+      <div class="about-stat-grid">
+        <div class="about-stat"><div class="about-stat-num">0→1</div><div class="about-stat-lbl">Platform Builder</div></div>
+        <div class="about-stat"><div class="about-stat-num">500+</div><div class="about-stat-lbl">Users Impacted</div></div>
+        <div class="about-stat"><div class="about-stat-num">AI</div><div class="about-stat-lbl">Accelerated Discovery</div></div>
+        <div class="about-stat"><div class="about-stat-num">UX</div><div class="about-stat-lbl">Workflow Design</div></div>
+      </div>
+    </div>
+    <div class="about-right fade-in">
+      <p>Digital Product Manager with a track record of shipping <strong>large-scale digital platforms</strong> across Singapore — from business registries to enterprise case systems used daily by thousands of users.</p>
+      <p>I operate at the intersection of <strong>complex systems, enterprise architecture, and user reality</strong> — partnering with cross-functional teams and senior stakeholders to turn ambiguous briefs into high-impact, scalable products.</p>
+      <p>Increasingly, I leverage <strong>generative AI to compress discovery cycles</strong> — turning 3-month research programs into 1-week validated hypotheses, without sacrificing rigour.</p>
+      <div class="tag-row">
+        <span class="tag">Product Strategy</span>
+        <span class="tag">0→1 Discovery</span>
+        <span class="tag">Digital Platforms</span>
+        <span class="tag">AI-Accelerated</span>
+        <span class="tag">Stakeholder Mgmt</span>
+        <span class="tag">API Design</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<div class="exp-bg full-width-section" id="experience">
+  <div class="full-width-inner">
+    <div class="s-label">Experience</div>
+    <div class="s-title">Where I've built.</div>
+
+    <!-- ACRA -->
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-org">ACRA</div>
+        <div class="exp-role">Product Manager &<br>Assistant Director</div>
+        <div class="exp-period">Jan 2026 – Present</div>
+        <div class="exp-badge">Business Registry</div>
+      </div>
+      <div class="exp-content">
+        <p class="exp-liner">Leading product strategy and AI-accelerated discovery across digital platform initiatives — driving transformation from legacy workflows to scalable, user-centric products.</p>
+        <ul class="exp-pts">
+          <li>Applied <strong>AI-accelerated discovery</strong> to cut validation cycles from 3 months → 1 week</li>
+          <li>Drove process re-engineering reducing case processing time by <strong>50%</strong></li>
+        </ul>
+        <div class="exp-chips">
+          <span class="chip">0→1 Platform</span><span class="chip">Regional Scale</span><span class="chip">AI Discovery</span><span class="chip">PM Mentorship</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- HDB -->
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-org">HDB</div>
+        <div class="exp-role">Senior Technical<br>Product Manager</div>
+        <div class="exp-period">Jun 2022 – Dec 2025</div>
+        <div class="exp-badge">Enterprise Platforms</div>
+      </div>
+      <div class="exp-content">
+        <p class="exp-liner">Owned end-to-end delivery of enterprise digital platforms — driving complex system integrations and senior stakeholder partnerships across large-scale programs.</p>
+        <ul class="exp-pts">
+          <li>Led <strong>cross-functional teams of 9–10</strong> across UX, engineering, and business domains</li>
+          <li>Architected integrations across <strong>10+ enterprise APIs</strong> — security, property, legal, HR, and more</li>
+          <li>Engaged <strong>senior leadership</strong> directly to secure alignment and drive program execution</li>
+        </ul>
+        <div class="exp-chips">
+          <span class="chip">Enterprise PM</span><span class="chip">API Design</span><span class="chip">Executive Alignment</span><span class="chip">System Integration</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LTA -->
+    <div class="exp-item fade-in">
+      <div class="exp-meta">
+        <div class="exp-org">LTA</div>
+        <div class="exp-role">Product Manager<br>& Engineer</div>
+        <div class="exp-period">May 2021 – May 2022</div>
+        <div class="exp-badge">Asset Management</div>
+      </div>
+      <div class="exp-content">
+        <p class="exp-liner">Shaped the product vision for an enterprise asset management platform — bridging engineering and product across operations teams and key stakeholders.</p>
+        <ul class="exp-pts">
+          <li>Owned roadmap definition for <strong>Rail Enterprise Asset Management 2.0</strong></li>
+          <li>Grounded every decision in <strong>technical feasibility and real-world rail operations</strong></li>
+        </ul>
+        <div class="exp-chips">
+          <span class="chip">Asset Management</span><span class="chip">Data Platform</span><span class="chip">PM + Engineering</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-label">Featured Projects</div>
+  <div class="s-title">Products built at scale.</div>
+
+  <div class="projects-layout">
+
+    <!-- PROJECT 2: HDB Combined -->
+    <div class="project-block fade-in">
+      <div class="project-header">
+        <div>
+          <div class="project-org">HDB · 2022–2025</div>
+          <div class="project-name">Enterprise Housing Platforms</div>
+          <div class="project-desc">Two enterprise-scale platforms delivered end-to-end — a unified case management system migrated from legacy mainframe, and a disbursement platform for eligible households integrated with a payment gateway.</div>
+        </div>
+        <div class="project-impact-badge">Enterprise Scale · 10+ Integrations</div>
+      </div>
+      <div class="project-body">
+
+        <!-- Sub-project 1: Case Management -->
+        <div style="margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border)">
+          <div style="font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem;font-weight:700">01 · Enterprise Case Management System</div>
+          <div class="project-row">
+            <div>
+              <div class="project-col-label">Problem</div>
+              <div class="project-col-text">HDB officers managed high-volume housing cases across legacy mainframe systems — creating delays, data silos, and poor case visibility. No unified platform existed.</div>
+            </div>
+            <div>
+              <div class="project-col-label">Approach</div>
+              <div class="project-col-text">Led 0→1 delivery with a 9-person cross-functional team. Engineered SFTP-based mainframe data migration, defined a 4-stage case lifecycle, and integrated 10+ enterprise APIs.</div>
+            </div>
+          </div>
+
+          <!-- Case lifecycle diagram -->
+          <div class="diagram-wrap">
+            <div class="diagram-title">Case Management Lifecycle Framework</div>
+            <svg width="100%" viewBox="0 0 680 130" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M2 1L8 5L2 9" fill="none" stroke="#e05c1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+              </defs>
+              <rect x="20" y="28" width="135" height="72" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <rect x="20" y="28" width="135" height="6" rx="2" fill="#2563eb"/>
+              <text x="87" y="55" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" font-weight="700" fill="#2563eb">01 · Initiation</text>
+              <text x="87" y="70" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8" fill="#5c4f3a">Case created via</text>
+              <text x="87" y="82" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">eService / officer</text>
+              <text x="87" y="94" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">assignment</text>
+              <line x1="157" y1="64" x2="178" y2="64" stroke="#e05c1a" stroke-width="1.5" marker-end="url(#arr1)"/>
+              <rect x="180" y="28" width="135" height="72" rx="4" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>
+              <rect x="180" y="28" width="135" height="6" rx="2" fill="#0f766e"/>
+              <text x="247" y="55" text-anchor="middle" font-family="Space Mono" font-size="9" font-weight="700" fill="#0f766e">02 · Pre-Engage</text>
+              <text x="247" y="70" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Document check,</text>
+              <text x="247" y="82" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">eligibility screen,</text>
+              <text x="247" y="94" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">applicant contact</text>
+              <line x1="317" y1="64" x2="338" y2="64" stroke="#e05c1a" stroke-width="1.5" marker-end="url(#arr1)"/>
+              <rect x="340" y="28" width="135" height="72" rx="4" fill="#fff" stroke="#e05c1a" stroke-width="1.5"/>
+              <rect x="340" y="28" width="135" height="6" rx="2" fill="#e05c1a"/>
+              <text x="407" y="55" text-anchor="middle" font-family="Space Mono" font-size="9" font-weight="700" fill="#e05c1a">03 · Assessment</text>
+              <text x="407" y="70" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Data verification</text>
+              <text x="407" y="82" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">via 10+ APIs, officer</text>
+              <text x="407" y="94" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">decision workflow</text>
+              <line x1="477" y1="64" x2="498" y2="64" stroke="#e05c1a" stroke-width="1.5" marker-end="url(#arr1)"/>
+              <rect x="500" y="28" width="160" height="72" rx="4" fill="#fff" stroke="#9c8e78" stroke-width="1.5"/>
+              <rect x="500" y="28" width="160" height="6" rx="2" fill="#9c8e78"/>
+              <text x="580" y="55" text-anchor="middle" font-family="Space Mono" font-size="9" font-weight="700" fill="#5c4f3a">04 · Closure</text>
+              <text x="580" y="70" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Outcome recorded,</text>
+              <text x="580" y="82" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">notifications sent,</text>
+              <text x="580" y="94" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">case archived</text>
+            </svg>
+          </div>
+
+          <!-- Mainframe migration diagram -->
+          <div class="diagram-wrap">
+            <div class="diagram-title">Mainframe DB2 → Case Platform Migration (SFTP)</div>
+            <svg width="100%" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M2 1L8 5L2 9" fill="none" stroke="#e05c1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+              </defs>
+              <rect x="20" y="40" width="130" height="100" rx="4" fill="#fff" stroke="#9c8e78" stroke-width="1.5"/>
+              <rect x="20" y="40" width="130" height="20" rx="2" fill="#f2ede4"/>
+              <text x="85" y="54" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#5c4f3a">MAINFRAME</text>
+              <rect x="32" y="68" width="106" height="14" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="85" y="78" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">DB2 · Cases Table</text>
+              <rect x="32" y="86" width="106" height="14" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="85" y="96" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">DB2 · Applicants</text>
+              <rect x="32" y="104" width="106" height="14" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="85" y="114" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">DB2 · Status Codes</text>
+              <rect x="32" y="122" width="106" height="12" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="85" y="131" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">DB2 · History Log</text>
+              <line x1="152" y1="90" x2="196" y2="90" stroke="#9c8e78" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arr2)"/>
+              <text x="174" y="83" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">Batch</text>
+              <text x="174" y="104" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">extract</text>
+              <rect x="198" y="55" width="110" height="70" rx="4" fill="#fff" stroke="#b8860b" stroke-width="1.5"/>
+              <rect x="198" y="55" width="110" height="18" rx="2" fill="rgba(184,134,11,0.08)"/>
+              <text x="253" y="67" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#b8860b">SFTP TRANSFER</text>
+              <text x="253" y="87" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Scheduled nightly</text>
+              <text x="253" y="100" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">batch transfer</text>
+              <text x="253" y="113" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Encrypted flat files</text>
+              <line x1="310" y1="90" x2="354" y2="90" stroke="#e05c1a" stroke-width="1.5" marker-end="url(#arr2)"/>
+              <text x="332" y="83" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#e05c1a">Parse</text>
+              <text x="332" y="104" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#e05c1a">+ map</text>
+              <rect x="356" y="55" width="110" height="70" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <rect x="356" y="55" width="110" height="18" rx="2" fill="rgba(37,99,235,0.07)"/>
+              <text x="411" y="67" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#2563eb">TRANSFORM</text>
+              <text x="411" y="87" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Field mapping</text>
+              <text x="411" y="100" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Data validation</text>
+              <text x="411" y="113" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Case object creation</text>
+              <line x1="468" y1="90" x2="512" y2="90" stroke="#e05c1a" stroke-width="1.5" marker-end="url(#arr2)"/>
+              <text x="490" y="83" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#e05c1a">Load</text>
+              <rect x="514" y="30" width="146" height="130" rx="4" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>
+              <rect x="514" y="30" width="146" height="20" rx="2" fill="rgba(15,118,110,0.08)"/>
+              <text x="587" y="43" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#0f766e">CASE PLATFORM</text>
+              <rect x="526" y="58" width="122" height="14" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="587" y="68" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#2563eb">Cases · Modern schema</text>
+              <rect x="526" y="76" width="122" height="14" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="587" y="86" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Officer dashboard</text>
+              <rect x="526" y="94" width="122" height="14" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="587" y="104" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Audit trail</text>
+              <rect x="526" y="112" width="122" height="14" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="587" y="122" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">10+ API integrations</text>
+              <rect x="526" y="130" width="122" height="14" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="587" y="140" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Workflow engine</text>
+              <line x1="20" y1="175" x2="40" y2="175" stroke="#9c8e78" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <text x="45" y="179" font-family="Space Mono" font-size="7" fill="#9c8e78">Batch extract (nightly)</text>
+              <line x1="180" y1="175" x2="200" y2="175" stroke="#2563eb" stroke-width="1.5"/>
+              <text x="205" y="179" font-family="Space Mono" font-size="7" fill="#9c8e78">Data pipeline</text>
+            </svg>
+          </div>
+
+          <!-- API grid -->
+          <div style="margin-top:1.5rem;padding:1.5rem;background:var(--bg3);border:1px solid var(--border);border-radius:2px">
+            <div class="project-col-label" style="margin-bottom:1rem">Complex System Integration · 10+ Enterprise APIs</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.5rem">
+              <div style="font-family:var(--mono);font-size:0.68rem;color:var(--teal);border:1px solid rgba(15,118,110,0.25);padding:0.4rem 0.7rem;border-radius:2px;background:rgba(15,118,110,0.05)">Security APIs</div>
+              <div style="font-family:var(--mono);font-size:0.68rem;color:var(--teal);border:1px solid rgba(15,118,110,0.25);padding:0.4rem 0.7rem;border-radius:2px;background:rgba(15,118,110,0.05)">Residential APIs</div>
+              <div style="font-family:var(--mono);font-size:0.68rem;color:var(--teal);border:1px solid rgba(15,118,110,0.25);padding:0.4rem 0.7rem;border-radius:2px;background:rgba(15,118,110,0.05)">Property Details</div>
+              <div style="font-family:var(--mono);font-size:0.68rem;color:var(--teal);border:1px solid rgba(15,118,110,0.25);padding:0.4rem 0.7rem;border-radius:2px;background:rgba(15,118,110,0.05)">Sale &amp; Resale</div>
+              <div style="font-family:var(--mono);font-size:0.68rem;color:var(--teal);border:1px solid rgba(15,118,110,0.25);padding:0.4rem 0.7rem;border-radius:2px;background:rgba(15,118,110,0.05)">Legal APIs</div>
+              <div style="font-family:var(--mono);font-size:0.68rem;color:var(--teal);border:1px solid rgba(15,118,110,0.25);padding:0.4rem 0.7rem;border-radius:2px;background:rgba(15,118,110,0.05)">HR Systems</div>
+              <div style="font-family:var(--mono);font-size:0.68rem;color:var(--ink3);border:1px solid var(--border);padding:0.4rem 0.7rem;border-radius:2px">+ 4 more systems</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-project 2: Rental Voucher -->
+        <div>
+          <div style="font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem;font-weight:700">02 · Rental Voucher Disbursement Platform</div>
+          <div class="project-row">
+            <div>
+              <div class="project-col-label">Problem</div>
+              <div class="project-col-text">Low-income households faced a fragmented, manual process to access rental support — slow assessment cycles meant delayed financial relief for vulnerable applicants.</div>
+            </div>
+            <div>
+              <div class="project-col-label">Approach</div>
+              <div class="project-col-text">Engineered and operationalised end-to-end: eService application, automated eligibility assessment, officer review workflow, and payment voucher disbursement via integrated payment gateway.</div>
+            </div>
+          </div>
+
+          <div class="diagram-wrap">
+            <div class="diagram-title">Rental Voucher Disbursement · End-to-End Flow</div>
+            <svg width="100%" viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M2 1L8 5L2 9" fill="none" stroke="#e05c1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+              </defs>
+              <rect x="20" y="30" width="115" height="90" rx="4" fill="#fff" stroke="#2563eb" stroke-width="1.5"/>
+              <rect x="20" y="30" width="115" height="18" rx="2" fill="rgba(37,99,235,0.1)"/>
+              <text x="77" y="42" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#2563eb">APPLICANT</text>
+              <text x="77" y="62" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">eService form</text>
+              <text x="77" y="74" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Means-testing</text>
+              <text x="77" y="86" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">data submitted</text>
+              <circle cx="77" cy="107" r="6" fill="none" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="77" y1="113" x2="77" y2="120" stroke="#2563eb" stroke-width="1.5"/>
+              <line x1="137" y1="75" x2="163" y2="75" stroke="#e05c1a" stroke-width="1.5" marker-end="url(#arr3)"/>
+              <text x="150" y="67" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">Submit</text>
+              <rect x="165" y="30" width="120" height="90" rx="4" fill="#fff" stroke="#b8860b" stroke-width="1.5"/>
+              <rect x="165" y="30" width="120" height="18" rx="2" fill="rgba(184,134,11,0.08)"/>
+              <text x="225" y="42" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#b8860b">ASSESSMENT</text>
+              <text x="225" y="62" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Auto eligibility</text>
+              <text x="225" y="74" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">check via APIs</text>
+              <text x="225" y="86" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Income verified</text>
+              <text x="225" y="98" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Case flagged</text>
+              <line x1="287" y1="75" x2="313" y2="75" stroke="#e05c1a" stroke-width="1.5" marker-end="url(#arr3)"/>
+              <text x="300" y="67" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">Review</text>
+              <rect x="315" y="30" width="120" height="90" rx="4" fill="#fff" stroke="#0f766e" stroke-width="1.5"/>
+              <rect x="315" y="30" width="120" height="18" rx="2" fill="rgba(15,118,110,0.08)"/>
+              <text x="375" y="42" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#0f766e">OFFICER REVIEW</text>
+              <text x="375" y="62" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Case dashboard</text>
+              <text x="375" y="74" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Manual review</text>
+              <text x="375" y="86" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Approve / Reject</text>
+              <text x="375" y="98" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#5c4f3a">Voucher generated</text>
+              <line x1="437" y1="75" x2="463" y2="75" stroke="#e05c1a" stroke-width="1.5" marker-end="url(#arr3)"/>
+              <text x="450" y="67" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">Disburse</text>
+              <rect x="465" y="15" width="195" height="110" rx="4" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+              <rect x="465" y="15" width="195" height="18" rx="2" fill="rgba(37,99,235,0.08)"/>
+              <text x="562" y="27" text-anchor="middle" font-family="Space Mono" font-size="8" fill="#2563eb">PAYMENT GATEWAY</text>
+              <rect x="477" y="40" width="78" height="30" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="516" y="53" text-anchor="middle" font-family="Space Grotesk" font-size="7" fill="#5c4f3a">Voucher</text>
+              <text x="516" y="63" text-anchor="middle" font-family="Space Grotesk" font-size="7" fill="#5c4f3a">encrypted</text>
+              <rect x="560" y="40" width="88" height="30" rx="2" fill="#faf8f4" stroke="#e2d9cc" stroke-width="0.5"/>
+              <text x="604" y="53" text-anchor="middle" font-family="Space Grotesk" font-size="7" fill="#5c4f3a">Bank transfer /</text>
+              <text x="604" y="63" text-anchor="middle" font-family="Space Grotesk" font-size="7" fill="#5c4f3a">e-voucher sent</text>
+              <text x="562" y="94" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#0f766e">Monthly disbursement</text>
+              <text x="562" y="107" text-anchor="middle" font-family="Space Grotesk" font-size="8" fill="#0f766e">to eligible applicant</text>
+              <text x="562" y="118" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#2563eb">Automated · Recurring</text>
+              <path d="M562 125 Q562 170 77 170 Q77 155 77 150" fill="none" stroke="#9c8e78" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr3)"/>
+              <text x="340" y="185" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#9c8e78">SMS / email notification to applicant on disbursement</text>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    </div>
+</section>
+
+<!-- SKILLS -->
+<div class="full-width-section" id="skills" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1">
+  <div class="full-width-inner">
+    <div class="s-label">Skills</div>
+    <div class="s-title">What I bring.</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-lbl">Product</div>
+        <ul class="skill-list">
+          <li>0→1 Discovery & Problem Framing</li>
+          <li>Product Strategy & Roadmapping</li>
+          <li>OKR Definition & Prioritisation</li>
+          <li>User Research & Hypothesis Testing</li>
+          <li>Data-Driven Decision Making</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-lbl">Leadership</div>
+        <ul class="skill-list">
+          <li>Senior Stakeholder Management</li>
+          <li>Cross-Functional Team Leadership (10+)</li>
+          <li>PM Mentorship & Coaching</li>
+          <li>Business Process Re-engineering</li>
+          <li>Multi-stakeholder Program Delivery</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-lbl">Technical</div>
+        <ul class="skill-list">
+          <li>API Design & Technical Specification</li>
+          <li>Enterprise System Integration</li>
+          <li>Data Analytics & SQL</li>
+          <li>React / Node.js / Java</li>
+          <li>System Design & Architecture</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-lbl">Modern Practice</div>
+        <ul class="skill-list">
+          <li>AI-Accelerated Product Discovery</li>
+          <li>Rapid Prototyping with GenAI</li>
+          <li>Insight Synthesis at Speed</li>
+          <li>Certified Scrum Master</li>
+          <li>Business & Data Analytics Certified</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-left fade-in">
+      <div class="s-label">Contact</div>
+      <h2>Let's build something that matters.</h2>
+      <p>Open to product leadership roles, advisory engagements, and conversations about large-scale digital transformation in the public or enterprise sector.</p>
+    </div>
+    <div class="contact-links fade-in">
+      <a href="mailto:denversontanjw@gmail.com" class="contact-link">
+        <div>
+          <div class="contact-link-lbl">Email</div>
+          <div class="contact-link-val">denversontanjw@gmail.com</div>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://www.linkedin.com/in/denverson-tan/" target="_blank" class="contact-link">
+        <div>
+          <div class="contact-link-lbl">LinkedIn</div>
+          <div class="contact-link-val">linkedin.com/in/denverson-tan</div>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="#" class="contact-link">
+        <div>
+          <div class="contact-link-lbl">Location</div>
+          <div class="contact-link-val">Singapore</div>
+        </div>
+        <span class="contact-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>© 2026 Tan Jing Wei Denverson</p>
+  <p>Senior Product Manager · Singapore</p>
+</div>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    const target = document.querySelector(id);
+    if(target){
+      e.preventDefault();
+      const offset = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({top: offset, behavior:'smooth'});
+    }
+  });
+});
+</script>
+</body>
+</html>
